@@ -7,7 +7,9 @@ namespace baza_vet
     internal class VetClinicContext : DbContext
     {
         public DbSet<Animal> Animals { get; set; }
-
+        public DbSet<Appointments> Appointments { get; set; }
+        public DbSet<Doctors> Doctors { get; set; }
+        public DbSet<Vaccinations> Vaccinations { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var config = new ConfigurationBuilder()
