@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using baza_vet.Modele;
 
-namespace baza_vet
+namespace baza_vet.Data
 {
-    internal class VetClinicContext : DbContext
+    public class VetClinicContext : DbContext
     {
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Appointments> Appointments { get; set; }
