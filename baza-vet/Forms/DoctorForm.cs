@@ -11,6 +11,7 @@ namespace baza_vet.Forms
         public DoctorForm()
         {
             InitializeComponent();
+            
         }
         private void button1_Click(object sender, EventArgs e)//baza zwierzat
         {

@@ -1,5 +1,6 @@
 ﻿using baza_vet.Data;
 using baza_vet.Modele;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,8 +54,10 @@ namespace baza_vet.Forms
 
         private void button2_Click(object sender, EventArgs e)//twoji pacjenci
         {
+            WyszukajTextBoxx.Text = "";
             if (button2.Text == "Twoi Pacjenci")
             {
+                sortowanie = true;
                 using (var context = new VetClinicContext())
                 {
                     var animals = context.Animals.Where(a => a.Id == oknoDoctora.getDoctor().Id).ToList();
@@ -66,6 +69,7 @@ namespace baza_vet.Forms
             }
             else
             {
+                sortowanie = false;
                 using (var context = new VetClinicContext())
                 {
                     var animals = context.Animals.ToList();
@@ -83,9 +87,84 @@ namespace baza_vet.Forms
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)//dodaj pacjenta
+        {
+            var oknoDodaj = new DodajZwierzeForm(oknoDoctora.getDoctor().Id, this);
+            oknoDodaj.ShowDialog();
+        }
+
+        private void Edycja_Click(object sender, EventArgs e)
+        {
+            var oknoDodaj = new DodajZwierzeForm(oknoDoctora.getDoctor().Id, (Animal)ListBoxAnimals.SelectedItem, this);
+
+            oknoDodaj.ShowDialog();
+        }
+
+        private void Usun_Click(object sender, EventArgs e)
+        {
+            var wybranyPacjent = (Animal)ListBoxAnimals.SelectedItem;
+            var confirm = MessageBox.Show($"Na pewno usunąć tego pacjenta?\n{wybranyPacjent.Name}", "Potwierdź", MessageBoxButtons.YesNo);
+            if (confirm == DialogResult.Yes)
+            {
+                using (var db = new VetClinicContext())
+                {
+                    db.Animals.Remove(wybranyPacjent);
+                    db.SaveChanges();
+                }
+
+                MessageBox.Show("Pacjent został usunięty.");
+                refreshList();
+            }
+        }
+        public void refreshList()
+        {
+            WyszukajTextBoxx.Text = "";
+            if (sortowanie)
+            {
+                using (var context = new VetClinicContext())
+                {
+                    var animals = context.Animals.Where(a => a.Id == oknoDoctora.getDoctor().Id).ToList();
+
+
+                    ListBoxAnimals.DataSource = animals;
+                    ListBoxAnimals.DisplayMember = animals.ToString(); // lub inna właściwość
+                }
+
+
+            }
+            else
+            {
+                using (var context = new VetClinicContext())
+                {
+                    var animals = context.Animals.ToList();
+
+
+                    ListBoxAnimals.DataSource = animals;
+                    ListBoxAnimals.DisplayMember = animals.ToString(); // lub inna właściwość
+                }
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)//wyszukiwarka
+        {
+            using (var context = new VetClinicContext())
+            {
+                var animals = context.Animals.Where(a => a.Name.Contains(WyszukajTextBoxx.Text) || a.Breed.Contains(WyszukajTextBoxx.Text) || a.Owner_Name.Contains(WyszukajTextBoxx.Text) || a.Species.Contains(WyszukajTextBoxx.Text)).ToList();
+                if (sortowanie)
+                {
+                     animals = context.Animals.Where(a => a.Id == oknoDoctora.getDoctor().Id && ( a.Name.Contains(WyszukajTextBoxx.Text) || a.Breed.Contains(WyszukajTextBoxx.Text)
+                                    || a.Owner_Name.Contains(WyszukajTextBoxx.Text) || a.Species.Contains(WyszukajTextBoxx.Text))).ToList();
+
+                }
+
+                ListBoxAnimals.DataSource = animals;
+                ListBoxAnimals.DisplayMember = animals.ToString(); // lub inna właściwość
+            }
         }
     }
 }

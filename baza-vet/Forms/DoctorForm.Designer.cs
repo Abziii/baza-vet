@@ -34,39 +34,54 @@ namespace baza_vet.Forms
         private void InitializeComponent()
         {
             button1 = new Button();
+            DoctorName = new Label();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(13, 25);
+            button1.Location = new Point(68, 246);
             button1.Name = "button1";
             button1.Size = new Size(183, 76);
             button1.TabIndex = 0;
             button1.Text = "baza zwierząt";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += this.button1_Click;
+            button1.Click += button1_Click;
+            // 
+            // DoctorName
+            // 
+            DoctorName.AutoSize = true;
+            DoctorName.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            DoctorName.Location = new Point(250, 126);
+            DoctorName.Name = "DoctorName";
+            DoctorName.Size = new Size(231, 50);
+            DoctorName.TabIndex = 1;
+            DoctorName.Text = "Welcome Dr.";
+            
             // 
             // DoctorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(DoctorName);
             Controls.Add(button1);
             Name = "DoctorForm";
             Text = "Baza-Vet";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         public DoctorForm(Doctors loggedInDoctor)
         {
             InitializeComponent();
             _loggedInDoctor = loggedInDoctor;
-
+            DoctorName.Text = $"Witaj Dr.{_loggedInDoctor.First_Name} {_loggedInDoctor.Last_Name}";
             // Przykład użycia:
             //  lblWelcome.Text = $"Witaj, dr {loggedInDoctor.Username}";
         }
         #endregion
 
         private Button button1;
+        private Label DoctorName;
     }
 }
