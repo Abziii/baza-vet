@@ -95,7 +95,7 @@
             Controls.Add(txtPassword);
             Controls.Add(button1);
             Name = "MenuGłown";
-            Text = "Form1";
+            Text = "Baza-Vet";
             ResumeLayout(false);
             PerformLayout();
         }

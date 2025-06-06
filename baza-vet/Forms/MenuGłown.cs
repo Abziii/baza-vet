@@ -28,14 +28,21 @@ namespace baza_vet.Forms
             if (!HashHelper.Verify(password, doctor.Password_Hash))
             {
                 MessageBox.Show("Nieprawid³owe has³o.");
-                MessageBox.Show(HashHelper.HashPassword(password));
+                
                 return;
             }
 
             // Zalogowano pomyœlnie
+            using (var contextt = new VetClinicContext())
+            {
+                // Próba pobrania danych
+                
+                MessageBox.Show("Po³¹czenie z baz¹ dzia³a! Liczba zwierzaków: " + contextt.Animals.Count());
+            }
+            
             MessageBox.Show($"Witaj, dr {doctor.First_Name}!");
             this.Hide();
-            var mainForm = new MainForm(doctor);
+            var mainForm = new DoctorForm(doctor);
             mainForm.ShowDialog();
             this.Close();
         }
