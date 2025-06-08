@@ -11,6 +11,6 @@ namespace baza_vet.Modele
 
         public string? Username { get; set; }
         public string? Password_Hash { get; set; }
-       
+        public ICollection<Animal> pacjents { get; set; } = new List<Animal>();
     }
 }

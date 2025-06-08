@@ -39,7 +39,7 @@ namespace baza_vet.Forms
             // 
             // button1
             // 
-            button1.Location = new Point(68, 246);
+            button1.Location = new Point(250, 236);
             button1.Name = "button1";
             button1.Size = new Size(183, 76);
             button1.TabIndex = 0;
@@ -56,7 +56,6 @@ namespace baza_vet.Forms
             DoctorName.Size = new Size(231, 50);
             DoctorName.TabIndex = 1;
             DoctorName.Text = "Welcome Dr.";
-            
             // 
             // DoctorForm
             // 

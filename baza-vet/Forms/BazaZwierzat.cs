@@ -1,15 +1,9 @@
 ﻿using baza_vet.Data;
 using baza_vet.Modele;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace baza_vet.Forms
 {
@@ -48,11 +42,31 @@ namespace baza_vet.Forms
         {
 
             var wybranyPacjent = (Animal)ListBoxAnimals.SelectedItem;
-            label1.Text = wybranyPacjent.ToString();
+            InformacjaPacjentLabel.Text = wybranyPacjent.ToString();
+            using (var context = new VetClinicContext())
+            {
+                var appointments = context.Appointments
+                .Where(a => a.Animal_Id == wybranyPacjent.Id)
+                .OrderBy(a => a.Appointment_Date)
+                .ToList();
+
+                BadaniaLabel.Text = "Badania:";
+
+                foreach (var appointment in appointments)
+                {
+                    var dr = context.Doctors.FirstOrDefault(d => d.Id == appointment.Doctor_Id);
+
+                    if (dr != null)
+                    {
+                        BadaniaLabel.Text += $"\n{appointment.Appointment_Date:yyyy-MM-dd}: {dr.First_Name} {dr.Last_Name} - {appointment.Notes}";
+                    }
+                }
+            }
+
 
         }
 
-        private void button2_Click(object sender, EventArgs e)//twoji pacjenci
+        private void button2_Click(object sender, EventArgs e)//twoi pacjenci
         {
             WyszukajTextBoxx.Text = "";
             if (button2.Text == "Twoi Pacjenci")
@@ -60,7 +74,10 @@ namespace baza_vet.Forms
                 sortowanie = true;
                 using (var context = new VetClinicContext())
                 {
-                    var animals = context.Animals.Where(a => a.Id == oknoDoctora.getDoctor().Id).ToList();
+                    var animals = context.Animals
+            .Include(a => a.doctors)
+            .Where(a => a.doctors.Any(d => d.Id == oknoDoctora.getDoctor().Id))
+            .ToList();
                     button2.Text = "Wszyscy Pacjenci";
 
                     ListBoxAnimals.DataSource = animals;
@@ -157,14 +174,30 @@ namespace baza_vet.Forms
                 var animals = context.Animals.Where(a => a.Name.Contains(WyszukajTextBoxx.Text) || a.Breed.Contains(WyszukajTextBoxx.Text) || a.Owner_Name.Contains(WyszukajTextBoxx.Text) || a.Species.Contains(WyszukajTextBoxx.Text)).ToList();
                 if (sortowanie)
                 {
-                     animals = context.Animals.Where(a => a.Id == oknoDoctora.getDoctor().Id && ( a.Name.Contains(WyszukajTextBoxx.Text) || a.Breed.Contains(WyszukajTextBoxx.Text)
-                                    || a.Owner_Name.Contains(WyszukajTextBoxx.Text) || a.Species.Contains(WyszukajTextBoxx.Text))).ToList();
+                    animals = context.Animals.Where(a => a.Id == oknoDoctora.getDoctor().Id && (a.Name.Contains(WyszukajTextBoxx.Text) || a.Breed.Contains(WyszukajTextBoxx.Text)
+                                   || a.Owner_Name.Contains(WyszukajTextBoxx.Text) || a.Species.Contains(WyszukajTextBoxx.Text))).ToList();
 
                 }
 
                 ListBoxAnimals.DataSource = animals;
                 ListBoxAnimals.DisplayMember = animals.ToString(); // lub inna właściwość
             }
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Badania_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DodajBadanie_Click(object sender, EventArgs e)
+        {
+            var oknoBadanie = new BadanieForm((Animal)ListBoxAnimals.SelectedItem, oknoDoctora.getDoctor(),this);
+            oknoBadanie.ShowDialog();
         }
     }
 }

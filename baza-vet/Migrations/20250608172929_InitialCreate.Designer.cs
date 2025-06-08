@@ -12,7 +12,7 @@ using baza_vet.Data;
 namespace baza_vet.Migrations
 {
     [DbContext(typeof(VetClinicContext))]
-    [Migration("20250606112241_InitialCreate")]
+    [Migration("20250608172929_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,21 @@ namespace baza_vet.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+
+            modelBuilder.Entity("AnimalDoctors", b =>
+                {
+                    b.Property<int>("doctorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("pacjentsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("doctorsId", "pacjentsId");
+
+                    b.HasIndex("pacjentsId");
+
+                    b.ToTable("animal_doctors", (string)null);
+                });
 
             modelBuilder.Entity("baza_vet.Modele.Animal", b =>
                 {
@@ -39,9 +54,6 @@ namespace baza_vet.Migrations
                     b.Property<string>("Breed")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int?>("Doctor_Id")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -77,10 +89,13 @@ namespace baza_vet.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Notes")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Animal_Id");
+
+                    b.HasIndex("Doctor_Id");
 
                     b.ToTable("Appointments");
                 });
@@ -133,7 +148,61 @@ namespace baza_vet.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Animal_Id");
+
                     b.ToTable("Vaccinations");
+                });
+
+            modelBuilder.Entity("AnimalDoctors", b =>
+                {
+                    b.HasOne("baza_vet.Modele.Doctors", null)
+                        .WithMany()
+                        .HasForeignKey("doctorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("baza_vet.Modele.Animal", null)
+                        .WithMany()
+                        .HasForeignKey("pacjentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("baza_vet.Modele.Appointments", b =>
+                {
+                    b.HasOne("baza_vet.Modele.Animal", "animal")
+                        .WithMany("appointments")
+                        .HasForeignKey("Animal_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("baza_vet.Modele.Doctors", "doctor")
+                        .WithMany()
+                        .HasForeignKey("Doctor_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("animal");
+
+                    b.Navigation("doctor");
+                });
+
+            modelBuilder.Entity("baza_vet.Modele.Vaccinations", b =>
+                {
+                    b.HasOne("baza_vet.Modele.Animal", "animal")
+                        .WithMany("vaccinations")
+                        .HasForeignKey("Animal_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("animal");
+                });
+
+            modelBuilder.Entity("baza_vet.Modele.Animal", b =>
+                {
+                    b.Navigation("appointments");
+
+                    b.Navigation("vaccinations");
                 });
 #pragma warning restore 612, 618
         }

@@ -41,12 +41,14 @@ namespace baza_vet.Forms
             button1 = new Button();
             ListBoxAnimals = new ListBox();
             button2 = new Button();
-            label1 = new Label();
+            InformacjaPacjentLabel = new Label();
             button3 = new Button();
             Edycja = new Button();
             Usun = new Button();
             WyszukajLabel = new Label();
             WyszukajTextBoxx = new TextBox();
+            BadaniaLabel = new Label();
+            DodajBadanie = new Button();
             SuspendLayout();
             // 
             // button1
@@ -63,7 +65,7 @@ namespace baza_vet.Forms
             // 
             ListBoxAnimals.BackColor = SystemColors.ActiveCaption;
             ListBoxAnimals.FormattingEnabled = true;
-            ListBoxAnimals.Location = new Point(29, 30);
+            ListBoxAnimals.Location = new Point(29, 36);
             ListBoxAnimals.Name = "ListBoxAnimals";
             ListBoxAnimals.Size = new Size(748, 204);
             ListBoxAnimals.TabIndex = 1;
@@ -71,23 +73,23 @@ namespace baza_vet.Forms
             // 
             // button2
             // 
-            button2.Location = new Point(167, 382);
+            button2.Location = new Point(366, 6);
             button2.Name = "button2";
-            button2.Size = new Size(145, 65);
+            button2.Size = new Size(122, 27);
             button2.TabIndex = 2;
             button2.Text = "Twoi Pacjenci";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // label1
+            // InformacjaPacjentLabel
             // 
-            label1.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label1.Location = new Point(29, 237);
-            label1.Name = "label1";
-            label1.Size = new Size(365, 130);
-            label1.TabIndex = 3;
-            label1.Text = "Informacja o pacjencie";
-            label1.Click += label1_Click;
+            InformacjaPacjentLabel.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            InformacjaPacjentLabel.Location = new Point(29, 243);
+            InformacjaPacjentLabel.Name = "InformacjaPacjentLabel";
+            InformacjaPacjentLabel.Size = new Size(345, 100);
+            InformacjaPacjentLabel.TabIndex = 3;
+            InformacjaPacjentLabel.Text = "Informacja o pacjencie";
+            InformacjaPacjentLabel.Click += label1_Click;
             // 
             // button3
             // 
@@ -122,7 +124,7 @@ namespace baza_vet.Forms
             // WyszukajLabel
             // 
             WyszukajLabel.AutoSize = true;
-            WyszukajLabel.Location = new Point(503, 3);
+            WyszukajLabel.Location = new Point(503, 9);
             WyszukajLabel.Name = "WyszukajLabel";
             WyszukajLabel.Size = new Size(73, 20);
             WyszukajLabel.TabIndex = 7;
@@ -131,23 +133,45 @@ namespace baza_vet.Forms
             // 
             // WyszukajTextBoxx
             // 
-            WyszukajTextBoxx.Location = new Point(582, 3);
+            WyszukajTextBoxx.Location = new Point(582, 6);
             WyszukajTextBoxx.Name = "WyszukajTextBoxx";
             WyszukajTextBoxx.Size = new Size(195, 27);
             WyszukajTextBoxx.TabIndex = 8;
             WyszukajTextBoxx.TextChanged += textBox1_TextChanged;
+            // 
+            // BadaniaLabel
+            // 
+            BadaniaLabel.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 238);
+            BadaniaLabel.Location = new Point(380, 243);
+            BadaniaLabel.Name = "BadaniaLabel";
+            BadaniaLabel.Size = new Size(386, 114);
+            BadaniaLabel.TabIndex = 8;
+            BadaniaLabel.Text = "Badania:";
+            BadaniaLabel.Click += Badania_Click;
+            // 
+            // DodajBadanie
+            // 
+            DodajBadanie.Location = new Point(167, 383);
+            DodajBadanie.Name = "DodajBadanie";
+            DodajBadanie.Size = new Size(157, 62);
+            DodajBadanie.TabIndex = 9;
+            DodajBadanie.Text = "Dodaj Badanie";
+            DodajBadanie.UseVisualStyleBackColor = true;
+            DodajBadanie.Click += DodajBadanie_Click;
             // 
             // BazaZwierzat
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(DodajBadanie);
+            Controls.Add(BadaniaLabel);
             Controls.Add(WyszukajTextBoxx);
             Controls.Add(WyszukajLabel);
             Controls.Add(Usun);
             Controls.Add(Edycja);
             Controls.Add(button3);
-            Controls.Add(label1);
+            Controls.Add(InformacjaPacjentLabel);
             Controls.Add(button2);
             Controls.Add(ListBoxAnimals);
             Controls.Add(button1);
@@ -162,11 +186,13 @@ namespace baza_vet.Forms
         private Button button1;
         private ListBox ListBoxAnimals;
         private Button button2;
-        private Label label1;
+        private Label InformacjaPacjentLabel;
         private Button button3;
         private Button Edycja;
         private Button Usun;
         private Label WyszukajLabel;
         private TextBox WyszukajTextBoxx;
+        private Label BadaniaLabel;
+        private Button DodajBadanie;
     }
 }

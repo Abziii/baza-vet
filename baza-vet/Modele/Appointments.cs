@@ -12,7 +12,9 @@ namespace baza_vet.Modele
         public int Doctor_Id { get; set; }
 
         public DateTime? Appointment_Date { get; set; }
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
+        public Animal animal { get; set; } = null!;
+        public Doctors doctor { get; set; } = null!;
 
     }
 }

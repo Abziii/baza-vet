@@ -33,8 +33,10 @@ namespace baza_vet.Forms
             }
 
             // Zalogowano pomyœlnie
+
             using (var contextt = new VetClinicContext())
             {
+
                 // Próba pobrania danych
                 
                 MessageBox.Show("Po³¹czenie z baz¹ dzia³a! Liczba zwierzaków: " + contextt.Animals.Count());

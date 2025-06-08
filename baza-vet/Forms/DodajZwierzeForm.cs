@@ -54,7 +54,7 @@ namespace baza_vet.Forms
                     Birth_Date = DataUrodzenia.Value,
                     Breed = rasa.Text,
                     Species = gatunek.Text,
-                    Doctor_Id = doctorId
+                    
 
                 };
 
@@ -94,7 +94,7 @@ namespace baza_vet.Forms
                     oldAnimal.Birth_Date = newAnimal.Birth_Date;
                     oldAnimal.Breed = newAnimal.Breed;
                     oldAnimal.Species = newAnimal.Species;
-                    oldAnimal.Doctor_Id = doctorId;
+                    
 
 
                     db.SaveChanges();
