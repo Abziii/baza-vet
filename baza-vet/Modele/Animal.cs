@@ -16,7 +16,7 @@ namespace baza_vet.Modele
         public ICollection<Vaccinations> vaccinations { get; set; } = new List<Vaccinations>();
         public ICollection<Appointments> appointments { get; set; } = new List<Appointments>(); public override string ToString()
         {
-            return $"Imie: {Name}    Gatunek: {Species} Rasa: {Breed}   Właściciel:{Owner_Name}"; // albo coś bardziej czytelnego
+            return $"Imie: {Name}    Gatunek: {Species} Rasa: {Breed}   Właściciel:{Owner_Name} Data urodzenia:{Birth_Date:dd-MM-yyyy}"; 
         }
     }
 }

@@ -65,7 +65,7 @@ namespace baza_vet.Forms
                 }
 
                 MessageBox.Show("Pacjent został dodany.");
-                this.Close(); // zamknij formularz po dodaniu
+                this.Close(); 
                 bazaZwierzat.refreshList();
             }
             else//edycja

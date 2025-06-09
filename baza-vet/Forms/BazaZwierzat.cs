@@ -56,6 +56,7 @@ namespace baza_vet.Forms
                 {
                     var dr = context.Doctors.FirstOrDefault(d => d.Id == appointment.Doctor_Id);
 
+
                     if (dr != null)
                     {
                         BadaniaLabel.Text += $"\n{appointment.Appointment_Date:yyyy-MM-dd}: {dr.First_Name} {dr.Last_Name} - {appointment.Notes}";
@@ -81,7 +82,7 @@ namespace baza_vet.Forms
                     button2.Text = "Wszyscy Pacjenci";
 
                     ListBoxAnimals.DataSource = animals;
-                    ListBoxAnimals.DisplayMember = animals.ToString(); // lub inna właściwość
+                    ListBoxAnimals.DisplayMember = animals.ToString(); 
                 }
             }
             else
@@ -93,7 +94,7 @@ namespace baza_vet.Forms
                     button2.Text = "Twoi Pacjenci";
 
                     ListBoxAnimals.DataSource = animals;
-                    ListBoxAnimals.DisplayMember = animals.ToString(); // lub inna właściwość
+                    ListBoxAnimals.DisplayMember = animals.ToString(); 
                 }
             }
 
