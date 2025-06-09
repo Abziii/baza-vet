@@ -1,6 +1,6 @@
-# 📘 Dokumentacja obsługi aplikacji weterynaryjnej – *baza-vet*
+#  Dokumentacja obsługi aplikacji weterynaryjnej – *baza-vet*
 
-## 📝 Wymagania systemowe
+##  Wymagania systemowe
 
 - .NET 8 SDK
 - MySQL Server (np. XAMPP, WAMP, MySQL Workbench)
@@ -9,9 +9,9 @@
   - `Pomelo.EntityFrameworkCore.MySql`
   - `Microsoft.EntityFrameworkCore.Design`
 
-## 🏗️ Jak uruchomić projekt?
+##  Jak uruchomić projekt?
 
-### 1. 🔧 Skonfiguruj połączenie z bazą
+### 1.  Skonfiguruj połączenie z bazą
 
 W pliku `appsettings.json` zmień dane dostępu:
 
@@ -23,16 +23,16 @@ W pliku `appsettings.json` zmień dane dostępu:
 }
 ```
 
-### 2. 🗃️ Stwórz bazę danych
+### 2.  Stwórz bazę danych
 
 Masz dwie opcje:
 
-#### ✅ Opcja A – plik SQL
+####  Opcja A – plik SQL
 
-1. Otwórz `baza danych.sql` w MySQL Workbench
+1. Otwórz `vet_clinic_import.sql` w MySQL Workbench
 2. Uruchom zawartość (Ctrl + Enter)
 
-#### ✅ Opcja B – przez migracje EF
+####  Opcja B – przez migracje EF
 
 W terminalu (folder projektu):
 
@@ -40,15 +40,15 @@ W terminalu (folder projektu):
 dotnet ef database update
 ```
 
-### 3. ▶️ Uruchom aplikację
+### 3.  Uruchom aplikację
 
 W Visual Studio:
 - Otwórz projekt `baza-vet.sln`
 - Kliknij F5 lub "Start"
 
-## 👨‍⚕️ Funkcje aplikacji
+##  Funkcje aplikacji
 
-### 🔐 Logowanie doktora
+###  Logowanie doktora
 
 - Login i hasło podawane przy starcie
 - Dane dostępowe testowe:
@@ -58,7 +58,7 @@ W Visual Studio:
 
 Hasła są przechowywane jako SHA256 hash.
 
-### 🐾 Moduły funkcjonalne
+###  Moduły funkcjonalne
 
 | Funkcja                            | Opis |
 |------------------------------------|------|
@@ -69,7 +69,7 @@ Hasła są przechowywane jako SHA256 hash.
 | **CRUD**                          | Pełna obsługa: dodawanie, podgląd, usuwanie, edytowanie danych pacjenta i badania |
 | **Relacja doktor-zwierzę**        | Każdy doktor może przypisać pacjenta do siebie |
 
-## 🧪 Dane testowe
+##  Dane testowe
 
 Zawarte w pliku `baza danych.sql` lub przez migrację z `HasData()`:
 
@@ -79,13 +79,13 @@ Zawarte w pliku `baza danych.sql` lub przez migrację z `HasData()`:
 - 2 szczepienia
 - relacje wiele-do-wielu
 
-## 🔐 Zabezpieczenia
+##  Zabezpieczenia
 
 - Hasła hashowane SHA256 (`PasswordHelper.cs`)
 - Przy dodaniu badania – doktor jest przypisywany do pacjenta
 - Brak możliwości `push` zmian do repo przez osoby z zewnątrz (GitHub publiczny = tylko do odczytu)
 
-## 📦 Struktura projektu
+##  Struktura projektu
 
 ```
 /baza-vet
@@ -101,4 +101,32 @@ Zawarte w pliku `baza danych.sql` lub przez migrację z `HasData()`:
 
 - Możesz modyfikować nazwę bazy w `appsettings.json` i pliku SQL
 - Projekt obsługuje wielodoktorową relację z pacjentami
-- Jeśli potrzebujesz `Restore` (przywracanie pacjenta) — możesz użyć pola `IsDeleted` i filtrować
+
+# Screenshoty:
+
+## Menu Główne:
+
+![Image](https://github.com/user-attachments/assets/14ec54b0-489e-4304-8056-b4dc1598373a)
+
+## Menu Po Zalogowaniu:
+
+![Image](https://github.com/user-attachments/assets/c538e1c3-e579-4304-817d-9ac25c3d0580)
+
+## Twoje Badania:
+
+![Image](https://github.com/user-attachments/assets/ee79886e-b46a-4105-938d-b91b3868c27e)
+
+## Baza Zwierząt:
+
+![Image](https://github.com/user-attachments/assets/c76a8cf0-d291-4627-80ef-97b0fd569514)
+
+## Dodaj Pacjenta:
+
+![Image](https://github.com/user-attachments/assets/bfd0e048-dade-4dc7-bd16-abbb4435b9d3)
+
+## Dodaj Badanie:
+
+![Image](https://github.com/user-attachments/assets/3748fdff-df79-4d92-b977-3af875da2ac1)
+
+
+
