@@ -61,7 +61,19 @@ namespace baza_vet.Forms
 
         private void bazeVetLabel_Click(object sender, EventArgs e)
         {
-
+            /*
+            using (var context = new VetClinicContext())
+            {
+                foreach (var doc in context.Doctors)
+                {
+                    if (!doc.Password_Hash.Contains('=')) // bardzo uproszczona detekcja "nie-zahaszowanego"
+                    {
+                        doc.Password_Hash = HashHelper.HashPassword(doc.Password_Hash);
+                    }
+                }
+                context.SaveChanges();
+            }
+            */
         }
     }
 }

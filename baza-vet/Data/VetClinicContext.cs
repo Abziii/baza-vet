@@ -52,3 +52,5 @@ namespace baza_vet.Data
         }
     }
 }
+//dotnet ef migration add nazwaMigracji
+//dotnet ef database update
