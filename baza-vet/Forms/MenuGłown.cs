@@ -28,7 +28,7 @@ namespace baza_vet.Forms
             if (!HashHelper.Verify(password, doctor.Password_Hash))
             {
                 MessageBox.Show("Nieprawid³owe has³o.");
-                
+
                 return;
             }
 
@@ -38,11 +38,11 @@ namespace baza_vet.Forms
             {
 
                 // Próba pobrania danych
-                
-                MessageBox.Show("Po³¹czenie z baz¹ dzia³a! Liczba zwierzaków: " + contextt.Animals.Count());
+
+              //  MessageBox.Show("Po³¹czenie z baz¹ dzia³a! Liczba zwierzaków: " + contextt.Animals.Count());
             }
+
             
-            MessageBox.Show($"Witaj, dr {doctor.First_Name}!");
             this.Hide();
             var mainForm = new DoctorForm(doctor);
             mainForm.ShowDialog();
@@ -55,6 +55,11 @@ namespace baza_vet.Forms
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bazeVetLabel_Click(object sender, EventArgs e)
         {
 
         }

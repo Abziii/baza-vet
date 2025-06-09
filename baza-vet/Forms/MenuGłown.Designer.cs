@@ -33,11 +33,12 @@
             txtPassword = new TextBox();
             label1 = new Label();
             label2 = new Label();
+            bazeVetLabel = new Label();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(304, 201);
+            button1.Location = new Point(305, 250);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
@@ -47,7 +48,7 @@
             // 
             // txtUserName
             // 
-            txtUserName.Location = new Point(282, 98);
+            txtUserName.Location = new Point(282, 183);
             txtUserName.Name = "txtUserName";
             txtUserName.Size = new Size(157, 27);
             txtUserName.TabIndex = 1;
@@ -55,7 +56,7 @@
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(282, 160);
+            txtPassword.Location = new Point(282, 217);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(157, 27);
             txtPassword.TabIndex = 2;
@@ -66,7 +67,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label1.Location = new Point(200, 94);
+            label1.Location = new Point(200, 177);
             label1.Name = "label1";
             label1.Size = new Size(76, 31);
             label1.TabIndex = 3;
@@ -77,18 +78,30 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 238);
-            label2.Location = new Point(200, 154);
+            label2.Location = new Point(200, 213);
             label2.Name = "label2";
             label2.Size = new Size(76, 31);
             label2.TabIndex = 4;
             label2.Text = "Hasło:";
             label2.Click += label2_Click;
             // 
+            // bazeVetLabel
+            // 
+            bazeVetLabel.AutoSize = true;
+            bazeVetLabel.Font = new Font("Copperplate Gothic Light", 48F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bazeVetLabel.Location = new Point(165, 54);
+            bazeVetLabel.Name = "bazeVetLabel";
+            bazeVetLabel.Size = new Size(405, 87);
+            bazeVetLabel.TabIndex = 5;
+            bazeVetLabel.Text = "Baza-Vet";
+            bazeVetLabel.Click += bazeVetLabel_Click;
+            // 
             // MenuGłown
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(bazeVetLabel);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtUserName);
@@ -115,5 +128,6 @@
         private TextBox txtPassword;
         private Label label1;
         private Label label2;
+        private Label bazeVetLabel;
     }
 }

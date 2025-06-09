@@ -120,7 +120,7 @@ namespace baza_vet.Forms
             // DataZabiegu
             // 
             DataZabiegu.Location = new Point(131, 192);
-            DataZabiegu.MinDate = new DateTime(2025, 6, 6, 0, 0, 0, 0);
+            DataZabiegu.MinDate = DateTime.Today;
             DataZabiegu.Name = "DataZabiegu";
             DataZabiegu.Size = new Size(145, 27);
             DataZabiegu.TabIndex = 9;

@@ -35,11 +35,12 @@ namespace baza_vet.Forms
         {
             button1 = new Button();
             DoctorName = new Label();
+            TwojeBadaniaB = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(250, 236);
+            button1.Location = new Point(168, 241);
             button1.Name = "button1";
             button1.Size = new Size(183, 76);
             button1.TabIndex = 0;
@@ -56,12 +57,24 @@ namespace baza_vet.Forms
             DoctorName.Size = new Size(231, 50);
             DoctorName.TabIndex = 1;
             DoctorName.Text = "Welcome Dr.";
+            DoctorName.Click += DoctorName_Click;
+            // 
+            // TwojeBadaniaB
+            // 
+            TwojeBadaniaB.Location = new Point(386, 241);
+            TwojeBadaniaB.Name = "TwojeBadaniaB";
+            TwojeBadaniaB.Size = new Size(183, 75);
+            TwojeBadaniaB.TabIndex = 2;
+            TwojeBadaniaB.Text = "Twoje Badania";
+            TwojeBadaniaB.UseVisualStyleBackColor = true;
+            TwojeBadaniaB.Click += TwojeBadaniaB_Click;
             // 
             // DoctorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(TwojeBadaniaB);
             Controls.Add(DoctorName);
             Controls.Add(button1);
             Name = "DoctorForm";
@@ -82,5 +95,6 @@ namespace baza_vet.Forms
 
         private Button button1;
         private Label DoctorName;
+        private Button TwojeBadaniaB;
     }
 }

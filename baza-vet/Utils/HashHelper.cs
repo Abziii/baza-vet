@@ -16,7 +16,7 @@ namespace baza_vet
 
         public static bool Verify(string inputPassword, string storedHash)
         {
-            return HashPassword(inputPassword) == HashPassword(storedHash);
+            return HashPassword(inputPassword) == storedHash;
         }
     }
 }
